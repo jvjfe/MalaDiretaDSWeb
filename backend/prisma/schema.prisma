@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  senha      String
+  email      String      @unique
+  admin      Boolean     @default(false)
+  historicos Historico[]
+}
+
+model Mensagem {
+  id         Int         @id @default(autoincrement())
+  titulo     String
+  conteudo   String
+  imagem     String?
+  enviado    Boolean     @default(false)
+  historicos Historico[]
+}
+
+model Historico {
+  id         Int      @id @default(autoincrement())
+  usuarioId  Int
+  mensagemId Int
+  data       DateTime @default(now())
+
+  usuario  Usuario  @relation(fields: [usuarioId], references: [id])
+  mensagem Mensagem @relation(fields: [mensagemId], references: [id])
+}

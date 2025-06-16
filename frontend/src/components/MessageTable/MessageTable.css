@@ -1,0 +1,223 @@
+.message-table-container {
+    margin-top: 20px;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.message-table-container h2 {
+    text-align: center;
+    margin-bottom: 12px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+.message-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    overflow: hidden;
+}
+
+.message-table thead tr {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.message-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.message-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.message-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.message-table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+.message-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.message-table thead tr th:first-child {
+    border-top-left-radius: 16px;
+}
+
+.message-table thead tr th:last-child {
+    border-top-right-radius: 16px;
+}
+
+.message-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 16px;
+}
+
+.message-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 16px;
+}
+
+.message-table button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-weight: 500;
+    padding: 6px 12px;
+    margin-right: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.message-table button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.message-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.message-modal-content {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px 32px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: #fff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.message-modal-content h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.message-modal-content img {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+    object-fit: contain;
+}
+
+.message-modal-content p,
+.message-modal-content small {
+    color: #ddd;
+}
+
+.message-modal-content button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-weight: 600;
+    padding: 8px 20px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.message-modal-content button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.status-sent {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.status-not-sent {
+    color: #e53935;
+    font-weight: 600;
+}
+
+.confirm-delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.confirm-delete-modal-content {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px 30px;
+    max-width: 400px;
+    color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.confirm-delete-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm-delete-buttons button {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.confirm-delete-buttons button:first-child {
+    background-color: #e53935;
+    color: white;
+}
+
+.confirm-delete-buttons button:first-child:hover {
+    background-color: #b71c1c;
+}
+
+.confirm-delete-buttons button:last-child {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.confirm-delete-buttons button:last-child:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

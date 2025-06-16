@@ -1,0 +1,195 @@
+/* Modal Overlay - fundo escurecido fixo */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Conteúdo do modal com vidro e glow semelhante ao header */
+.modal-content {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px 32px;
+    width: 450px;
+    color: #fff;
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.2);
+    animation: glow-white 3s ease-in-out infinite;
+}
+
+/* Para modais maiores */
+.larger-modal {
+    width: 600px;
+}
+
+/* Título do modal */
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Botão para abrir modal - estilo semelhante aos botões do header */
+.open-modal-btn {
+    padding: 8px 20px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    display: inline-block;
+}
+
+.open-modal-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Grupos de formulário com espaçamento */
+.form-group {
+    margin-bottom: 18px;
+}
+
+/* Inputs e textarea com vidro, bordas arredondadas, cores e sombra */
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    resize: vertical;
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Botões de formatação - estilo clean */
+.formatting-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.formatting-buttons button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.formatting-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Preview da imagem com borda arredondada e sombra */
+.image-preview {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.image-preview p {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #ddd;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+    object-fit: contain;
+}
+
+/* Ações do formulário - botões enviar e fechar alinhados */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+/* Botão enviar */
+.form-actions button[type="submit"] {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-weight: 600;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.form-actions button[type="submit"]:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Botão fechar */
+.form-actions .close-btn {
+    background-color: transparent;
+    border: none;
+    color: #bbb;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 20px;
+    transition: color 0.2s ease-in-out;
+}
+
+.form-actions .close-btn:hover {
+    color: #fff;
+}
+
+@keyframes glow-white {
+
+    0%,
+    100% {
+        box-shadow:
+            0 4px 30px rgba(0, 0, 0, 0.3),
+            0 0 10px rgba(255, 255, 255, 0.15),
+            0 0 20px rgba(255, 255, 255, 0.1),
+            0 0 30px rgba(255, 255, 255, 0.05);
+    }
+
+    50% {
+        box-shadow:
+            0 4px 30px rgba(0, 0, 0, 0.3),
+            0 0 15px rgba(255, 255, 255, 0.3),
+            0 0 30px rgba(255, 255, 255, 0.2),
+            0 0 45px rgba(255, 255, 255, 0.1);
+    }
+}

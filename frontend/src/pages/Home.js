@@ -1,0 +1,108 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import MessageForm from '../components/MessageForm/MessageForm.js';
+import MessageTable from '../components/MessageTable/MessageTable.js';
+import EditModal from '../components/EditModal/EditModal.js';
+import Header from '../components/Header/Header.js';
+
+const Home = () => {
+    const [messages, setMessages] = useState([]);
+    const [editingMessage, setEditingMessage] = useState(null);
+
+    // Carrega mensagens do backend
+    useEffect(() => {
+        axios.get('/mensagens')
+            .then(res => setMessages(res.data))
+            .catch(err => console.error('Erro ao buscar mensagens:', err));
+    }, []);
+
+    // Adiciona uma nova mensagem
+    const addMessage = (msg) => {
+        const formData = new FormData();
+        formData.append('titulo', msg.title);
+        formData.append('conteudo', msg.text);
+        if (msg.image) {
+            formData.append('imagem', msg.image);
+        }
+
+        const token = localStorage.getItem('token');
+
+        axios.post('/mensagens', formData, {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : '',
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+            .then(res => {
+                setMessages(prev => [...prev, res.data]);
+            })
+            .catch(err => {
+                console.error('Erro ao criar mensagem:', err);
+            });
+    };
+
+    // Envia uma mensagem
+    const sendMessage = (id) => {
+        const usuarioId = localStorage.getItem('usuarioId');
+        axios.post(`/mensagens/${id}/enviar`, null, {
+            headers: { 'usuario-id': usuarioId }
+        }).then(() => {
+            setMessages(prev => prev.map(m => m.id === id ? { ...m, enviado: true } : m));
+        }).catch(err => {
+            console.error('Erro ao enviar mensagem:', err);
+        });
+    };
+
+    // Exclui mensagem (somente se não enviada)
+    const deleteMessage = (id) => {
+        if (window.confirm('Tem certeza que deseja excluir esta mensagem?')) {
+            axios.delete(`/mensagens/${id}`)
+                .then(() => {
+                    setMessages(prev => prev.filter(m => m.id !== id));
+                })
+                .catch(err => {
+                    alert('Erro ao excluir mensagem. Talvez ela já tenha sido enviada.');
+                    console.error('Erro ao excluir:', err);
+                });
+        }
+    };
+
+    // Salva edição (sem suporte a imagem por enquanto)
+    const saveEdit = (updatedMsg) => {
+        axios.put(`/mensagens/${updatedMsg.id}`, {
+            titulo: updatedMsg.title,
+            conteudo: updatedMsg.text,
+            imagem: updatedMsg.image // texto (nome do arquivo), não reenvia arquivo aqui
+        }).then(res => {
+            setMessages(prev =>
+                prev.map(m => m.id === updatedMsg.id ? res.data : m)
+            );
+            setEditingMessage(null);
+        }).catch(err => {
+            alert('Erro ao salvar edição. Talvez a mensagem já tenha sido enviada.');
+            console.error('Erro ao editar:', err);
+        });
+    };
+
+    return (
+        <div style={{ padding: '20px' }}>
+            <Header />
+            <MessageForm onSend={addMessage} />
+            <MessageTable
+                messages={messages}
+                onSend={sendMessage}
+                onEdit={(id) => setEditingMessage(messages.find(m => m.id === id))}
+                onDelete={deleteMessage}
+            />
+            {editingMessage && (
+                <EditModal
+                    message={editingMessage}
+                    onClose={() => setEditingMessage(null)}
+                    onSave={saveEdit}
+                />
+            )}
+        </div>
+    );
+};
+
+export default Home;
