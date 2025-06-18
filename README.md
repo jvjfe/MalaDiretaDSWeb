@@ -11,20 +11,34 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 ### Backend
 
 - Node.js
-- Express
-- Prisma ORM
-- PostgreSQL
-- Multer (upload de imagens)
-- dotenv
-- CORS
-- Swagger (documentação da API)
+- Express `^5.1.0`
+- Prisma ORM `^6.8.2`
+- MySQL / PostgreSQL (via `DATABASE_URL`)
+- Multer (upload de imagens) `^2.0.1`
+- Dotenv `^16.5.0`
+- CORS `^2.8.5`
+- Nodemailer `^7.0.3`
+- Swagger UI `^5.24.1`
+- Swagger-ui-express `^5.0.1`
+- JSON Web Token (JWT) `^9.0.2`
+- Bcrypt `^6.0.0`
+- Nodemon (dev) `^3.1.10`
 
 ### Frontend
 
-- ReactJS
-- Axios
+- React `^19.1.0`
+- React DOM `^19.1.0`
+- React Scripts `5.0.1`
+- React Router DOM `^7.6.2`
+- Axios `^1.10.0`
+- React Markdown `^10.1.0`
 - React Modal
-- Componentização (MessageForm, MessageTable, EditModal, Header)
+- Componentização com `MessageForm`, `MessageTable`, `EditModal`, `Header`
+- Testing libraries:
+  - `@testing-library/react` `^16.3.0`
+  - `@testing-library/jest-dom` `^6.6.3`
+  - `@testing-library/user-event` `^13.5.0`
+  - `@testing-library/dom` `^10.4.0`
 
 ---
 
@@ -35,8 +49,8 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 - Criar mensagens com título, conteúdo e imagem (opcional)
 - Editar mensagens (somente se não enviadas)
 - Excluir mensagens (somente se não enviadas)
-- Enviar mensagens (restrito a administradores)
-- Listar todas as mensagens
+- Enviar mensagens para lista de e-mails
+- Listar todas as mensagens criadas
 
 ### Histórico
 
@@ -51,8 +65,8 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 ### Upload de Imagens
 
 - Imagens salvas na pasta `/uploads`
-- Utilização de `multer` no backend para o upload
-- Nomes únicos gerados com base em timestamps
+- Upload via `multer`
+- Nomes únicos com base em timestamp
 
 ---
 
@@ -78,33 +92,37 @@ npm start
 
 ### Banco de Dados
 
-Crie um arquivo `.env` no diretório `backend` com sua string de conexão:
+Crie um arquivo `.env` no diretório `backend` com sua conexão:
 
 ```env
 DATABASE_URL="mysql://user@localhost:3306/meubancodedados"
+EMAIL_USER="seuemail@gmail.com"
+EMAIL_PASS="suasenhadeaplicativo"
 ```
 
 ---
 
 ## Documentação da API
 
-Acesse a documentação via Swagger:
+Acesse via Swagger:
 
+```
 http://localhost:3001/api-docs
+```
 
 ---
 
-## ERROS ACONTECENDO
+## Problemas registrados
 
-- O botão de editar não funciona
-- Bugs visuais
-- A pasta uploads precisa ser criada na raiz do backend ao inciar o projeto
+- O botão de editar não está funcionando corretamente
+- Bugs visuais e de responsividade
+- A pasta `uploads` **deve estar na raiz do backend**, e não dentro de `src`
 
 ---
 
 ## Autor
 
 João Vítor Justino Ferri  
-GitHub: https://github.com/jvjfe
+GitHub: [https://github.com/jvjfe](https://github.com/jvjfe)
 
 ---
