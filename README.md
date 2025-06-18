@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# MalaDireta (EM PROGRESSO)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sistema completo de envio e gerenciamento de mensagens em massa para usuários cadastrados.
 
-## Available Scripts
+Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar mensagens com ou sem imagem, editar, deletar, enviar e manter um histórico detalhado de envios por usuário.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js
+- Express
+- Prisma ORM
+- PostgreSQL
+- Multer (upload de imagens)
+- dotenv
+- CORS
+- Swagger (documentação da API)
 
-### `npm test`
+### Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ReactJS
+- Axios
+- React Modal
+- Componentização (MessageForm, MessageTable, EditModal, Header)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Funcionalidades
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Mensagens
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Criar mensagens com título, conteúdo e imagem (opcional)
+- Editar mensagens (somente se não enviadas)
+- Excluir mensagens (somente se não enviadas)
+- Enviar mensagens (restrito a administradores)
+- Listar todas as mensagens
 
-### `npm run eject`
+### Histórico
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Registro de envio por usuário
+- Armazenamento no banco de dados via Prisma
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Usuários
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Cadastro e autenticação
+- Identificação de administrador via middleware
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Upload de Imagens
 
-## Learn More
+- Imagens salvas na pasta `/uploads`
+- Utilização de `multer` no backend para o upload
+- Nomes únicos gerados com base em timestamps
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Como Rodar o Projeto
 
-### Code Splitting
+### Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+cd backend
+npm install
+npx prisma generate
+npx prisma migrate dev --name init
+npm start
+```
 
-### Analyzing the Bundle Size
+### Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+cd frontend
+npm install
+npm start
+```
 
-### Making a Progressive Web App
+### Banco de Dados
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Crie um arquivo `.env` no diretório `backend` com sua string de conexão:
 
-### Advanced Configuration
+```env
+DATABASE_URL="mysql://user@localhost:3306/meubancodedados"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Documentação da API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Acesse a documentação via Swagger:
 
-### `npm run build` fails to minify
+http://localhost:3001/api-docs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## ERROS ACONTECENDO
+
+- O botão de editar não funciona
+- Bugs visuais
+- A pasta uploads precisa ser criada na raiz do backend ao inciar o projeto
+- As imagens são cadastradas no banco de dados mas não são enviadas aos emails
+
+---
+
+## Autor
+
+João Vítor Justino Ferri  
+GitHub: https://github.com/jvjfe
+
+---
