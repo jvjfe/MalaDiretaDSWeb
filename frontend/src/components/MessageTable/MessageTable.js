@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './MessageTable.css';
 
-const MessageTable = ({ messages, onSend, onEdit, onDelete }) => {
+const MessageTable = ({ messages, onSend, onEdit, onDelete, loadingEmailId }) => {
     const [viewingMessage, setViewingMessage] = useState(null);
     const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
@@ -33,14 +33,19 @@ const MessageTable = ({ messages, onSend, onEdit, onDelete }) => {
                     {messages.map((msg) => (
                         <tr key={msg.id}>
                             <td>{msg.id}</td>
-                            <td>{msg.titulo}</td> {/* Corrigido para 'titulo' */}
+                            <td>{msg.titulo}</td>
                             <td className={msg.enviado ? 'status-sent' : 'status-not-sent'}>
                                 {msg.enviado ? 'Enviado' : 'Não enviado'}
                             </td>
                             <td>
                                 {!msg.enviado ? (
                                     <>
-                                        <button onClick={() => onSend(msg.id)}>Enviar</button>{' '}
+                                        <button
+                                            onClick={() => onSend(msg.id)}
+                                            disabled={loadingEmailId === msg.id}
+                                        >
+                                            {loadingEmailId === msg.id ? 'Enviando...' : 'Enviar'}
+                                        </button>{' '}
                                         <button onClick={() => onEdit(msg.id)}>Editar</button>{' '}
                                         <button onClick={() => setConfirmDeleteId(msg.id)}>Excluir</button>
                                     </>

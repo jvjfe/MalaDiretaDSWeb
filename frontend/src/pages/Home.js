@@ -8,6 +8,8 @@ import Header from '../components/Header/Header.js';
 const Home = () => {
     const [messages, setMessages] = useState([]);
     const [editingMessage, setEditingMessage] = useState(null);
+    const [loadingEmailId, setLoadingEmailId] = useState(null);
+
 
     // Carrega mensagens do backend
     useEffect(() => {
@@ -41,17 +43,41 @@ const Home = () => {
             });
     };
 
-    // Envia uma mensagem
-    const sendMessage = (id) => {
-        const usuarioId = localStorage.getItem('usuarioId');
-        axios.post(`/mensagens/${id}/enviar`, null, {
-            headers: { 'usuario-id': usuarioId }
-        }).then(() => {
-            setMessages(prev => prev.map(m => m.id === id ? { ...m, enviado: true } : m));
-        }).catch(err => {
+    // Novo envio de e-mail com destinatários
+    const sendMessage = async (id) => {
+        if (loadingEmailId) return; // já está enviando algo
+        const msg = messages.find(m => m.id === id);
+        if (!msg) return;
+
+        const destinatarios = prompt('Digite os e-mails separados por vírgula:');
+        if (!destinatarios) return;
+
+        const emails = destinatarios.split(',').map(e => e.trim()).filter(e => e);
+
+        try {
+            setLoadingEmailId(id); // começa carregamento
+
+            await axios.post('/envio-email', {
+                emails,
+                subject: msg.titulo,
+                message: msg.conteudo,
+            });
+
+            await axios.patch(`/mensagens/${id}`, { enviado: true });
+
+            setMessages(prev =>
+                prev.map(m => m.id === id ? { ...m, enviado: true } : m)
+            );
+
+            alert('E-mail enviado com sucesso!');
+        } catch (err) {
             console.error('Erro ao enviar mensagem:', err);
-        });
+            alert('Erro ao enviar e-mail.');
+        } finally {
+            setLoadingEmailId(null); // termina carregamento
+        }
     };
+
 
     // Exclui mensagem (somente se não enviada)
     const deleteMessage = (id) => {
@@ -93,6 +119,7 @@ const Home = () => {
                 onSend={sendMessage}
                 onEdit={(id) => setEditingMessage(messages.find(m => m.id === id))}
                 onDelete={deleteMessage}
+                loadingEmailId={loadingEmailId}
             />
             {editingMessage && (
                 <EditModal

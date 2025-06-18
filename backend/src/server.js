@@ -8,6 +8,7 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./docs/swagger')
 const path = require('path')
 
+
 // Inicializações
 const app = express()
 const prisma = new PrismaClient()
@@ -16,6 +17,8 @@ app.set('prisma', prisma)
 // Middlewares globais
 app.use(cors())
 app.use(express.json())
+app.use('/envio-email', require('./routes/email'));
+
 
 // Servir imagens da pasta uploads (rota pública)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))

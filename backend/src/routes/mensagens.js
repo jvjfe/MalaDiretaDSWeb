@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-// 🔁 GET - Listar todas as mensagens
+// GET - Listar todas as mensagens
 router.get('/', async (req, res) => {
     try {
         const mensagens = await prisma.mensagem.findMany({
@@ -92,5 +92,23 @@ router.delete('/:id', async (req, res) => {
     await prisma.mensagem.delete({ where: { id: parseInt(req.params.id) } })
     res.send('Mensagem deletada.')
 })
+// Rota Patch
+router.patch('/:id', async (req, res) => {
+    const { id } = req.params;
+    const { enviado } = req.body;
+
+    try {
+        const mensagem = await req.app.get('prisma').mensagem.update({
+            where: { id: parseInt(id) },
+            data: { enviado: enviado === true },
+        });
+
+        res.json(mensagem);
+    } catch (error) {
+        console.error('Erro ao atualizar mensagem:', error);
+        res.status(500).json({ error: 'Erro ao atualizar status da mensagem.' });
+    }
+});
+
 
 module.exports = router
