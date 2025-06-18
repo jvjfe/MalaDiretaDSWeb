@@ -99,7 +99,6 @@ http://localhost:3001/api-docs
 - O botão de editar não funciona
 - Bugs visuais
 - A pasta uploads precisa ser criada na raiz do backend ao inciar o projeto
-- As imagens são cadastradas no banco de dados mas não são enviadas aos emails
 
 ---
 
