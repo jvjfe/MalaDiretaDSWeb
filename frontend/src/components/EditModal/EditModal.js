@@ -2,43 +2,50 @@ import React, { useState, useEffect } from 'react';
 import './EditModal.css';
 import axios from 'axios';
 
-const EditModal = ({ message, onClose, onSaved }) => {
+const EditModal = ({ message, onClose, onSave }) => {
     const [titulo, setTitulo] = useState('');
     const [conteudo, setConteudo] = useState('');
-    const [imagem, setImagem] = useState('');
+    const [imagem, setImagem] = useState(null); // aqui será o arquivo, não string
     const [previewUrl, setPreviewUrl] = useState('');
 
     useEffect(() => {
         if (message) {
             setTitulo(message.titulo || '');
             setConteudo(message.conteudo || '');
-            setImagem(message.imagem || '');
-            setPreviewUrl(message.imagem || '');
+            setImagem(null); // limpar arquivo selecionado, pq a imagem vem como string nome
+            if (message.imagem) {
+                setPreviewUrl(`/uploads/${message.imagem}`);
+            } else {
+                setPreviewUrl('');
+            }
         }
     }, [message]);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagem(reader.result); // Base64 para simular upload
-                setPreviewUrl(reader.result);
-            };
-            reader.readAsDataURL(file);
+            setImagem(file); // salva o arquivo no estado
+            setPreviewUrl(URL.createObjectURL(file)); // cria url temporária para preview
         }
     };
 
     const handleSave = async () => {
         try {
-            const response = await axios.put(`/mensagens/${message.id}`, {
-                titulo,
-                conteudo,
-                imagem
+            const formData = new FormData();
+            formData.append('titulo', titulo);
+            formData.append('conteudo', conteudo);
+
+            if (imagem) {
+                formData.append('imagem', imagem);
+            }
+            // Se não tiver novo arquivo selecionado, não envia 'imagem' no formData
+
+            const response = await axios.put(`/mensagens/${message.id}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
 
             alert('Mensagem atualizada com sucesso!');
-            onSaved(response.data); // passa o novo objeto atualizado para o pai
+            onSave(response.data);
             onClose();
         } catch (error) {
             console.error('Erro ao salvar mensagem:', error);

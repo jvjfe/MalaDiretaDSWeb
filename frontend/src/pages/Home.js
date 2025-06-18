@@ -10,7 +10,6 @@ const Home = () => {
     const [editingMessage, setEditingMessage] = useState(null);
     const [loadingEmailId, setLoadingEmailId] = useState(null);
 
-
     // Carrega mensagens do backend
     useEffect(() => {
         axios.get('/mensagens')
@@ -78,7 +77,6 @@ const Home = () => {
         }
     };
 
-
     // Exclui mensagem (somente se não enviada)
     const deleteMessage = (id) => {
         if (window.confirm('Tem certeza que deseja excluir esta mensagem?')) {
@@ -93,7 +91,7 @@ const Home = () => {
         }
     };
 
-    // Salva edição (sem suporte a imagem por enquanto)
+    // Salva edição
     const saveEdit = (updatedMsg) => {
         axios.put(`/mensagens/${updatedMsg.id}`, {
             titulo: updatedMsg.title,

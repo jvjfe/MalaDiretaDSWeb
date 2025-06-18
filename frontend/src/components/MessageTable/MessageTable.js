@@ -58,6 +58,7 @@ const MessageTable = ({ messages, onSend, onEdit, onDelete, loadingEmailId }) =>
                 </tbody>
             </table>
 
+            {/* Modal de visualização */}
             {viewingMessage && (
                 <div className="message-modal-overlay" onClick={() => setViewingMessage(null)}>
                     <div
@@ -65,24 +66,28 @@ const MessageTable = ({ messages, onSend, onEdit, onDelete, loadingEmailId }) =>
                         onClick={(e) => e.stopPropagation()}
                     >
                         <h2>{viewingMessage.titulo}</h2>
-                        {viewingMessage.imagem && (
+
+                        {viewingMessage.imagem ? (
                             <img
                                 src={`/uploads/${viewingMessage.imagem}`}
                                 alt="Imagem do email"
                                 style={{ maxWidth: '100%', maxHeight: 300, marginBottom: 10 }}
                             />
+                        ) : (
+                            <p><em>Sem imagem anexada</em></p>
                         )}
+
                         <ReactMarkdown>{viewingMessage.conteudo}</ReactMarkdown>
-                        {viewingMessage.enviadoEm && (
-                            <p><small>Enviado em: {new Date(viewingMessage.enviadoEm).toLocaleString()}</small></p>
-                        )}
-                        <button onClick={() => setViewingMessage(null)}>
-                            Fechar
-                        </button>
+
+                        <p><strong>Enviado por:</strong> {viewingMessage.usuario?.email || 'Desconhecido'}</p>
+                        <p><strong>Enviado em:</strong> {viewingMessage.enviadoEm ? new Date(viewingMessage.enviadoEm).toLocaleString() : 'Não enviado'}</p>
+
+                        <button onClick={() => setViewingMessage(null)}>Fechar</button>
                     </div>
                 </div>
             )}
 
+            {/* Modal de confirmação de exclusão */}
             {confirmDeleteId !== null && (
                 <div className="confirm-delete-modal-overlay" onClick={handleCancelDelete}>
                     <div className="confirm-delete-modal-content" onClick={(e) => e.stopPropagation()}>

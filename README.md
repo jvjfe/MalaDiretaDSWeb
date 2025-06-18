@@ -114,10 +114,10 @@ http://localhost:3001/api-docs
 
 ## Problemas registrados
 
-- O botão de editar não está funcionando corretamente
 - Bugs visuais e de responsividade
 - A pasta `uploads` **deve estar na raiz do backend**, e não dentro de `src`
-
+- A imagem não aparece corretamnete no botão de Editar e Ver
+- O botão de Ver não responde as informações corretas
 ---
 
 ## Autor
