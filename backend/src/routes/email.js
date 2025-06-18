@@ -1,12 +1,34 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
 
 router.post('/', async (req, res) => {
     const { emails, subject, message } = req.body;
 
     if (!emails || !subject || !message) {
         return res.status(400).json({ error: 'Campos obrigatórios faltando.' });
+    }
+
+    // Busca a mensagem com a imagem (assumindo que subject é o título único)
+    const msg = await prisma.mensagem.findFirst({
+        where: { titulo: subject },
+    });
+
+    if (!msg) {
+        return res.status(404).json({ error: 'Mensagem não encontrada.' });
+    }
+
+    const attachments = [];
+
+    if (msg.imagem) {
+        attachments.push({
+            filename: msg.imagem,
+            path: path.join(process.cwd(), 'uploads', msg.imagem)
+        });
     }
 
     const transporter = nodemailer.createTransport({
@@ -22,6 +44,7 @@ router.post('/', async (req, res) => {
         to: emails.join(','),
         subject,
         text: message,
+        attachments, // adiciona imagem como anexo
     };
 
     try {
