@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import MessageForm from '../components/MessageForm/MessageForm.js';
-import MessageTable from '../components/MessageTable/MessageTable.js';
-import EditModal from '../components/EditModal/EditModal.js';
-import Header from '../components/Header/Header.js';
+import MessageForm from '../../components/MessageForm/MessageForm.js';
+import MessageTable from '../../components/MessageTable/MessageTable.js';
+import EditModal from '../../components/EditModal/EditModal.js';
+import Header from '../../components/Header/Header.js';
 
 const Home = () => {
     const [messages, setMessages] = useState([]);
