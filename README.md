@@ -93,7 +93,7 @@ npm start
 ### Banco de Dados
 
 Antes de criar o ENV, a conta google associada deve ter a verificação de 2 fatores
-e uma senha de aplicativo veja mais em: [Fazer login com senhas de app] (https://support.google.com/accounts/answer/185833?hl=pt-BR)
+e uma senha de aplicativo veja mais em:[Fazer login com senhas de app](https://support.google.com/accounts/answer/185833?hl=pt-BR)
 
 Crie um arquivo `.env` no diretório `backend` com sua conexão:
 
