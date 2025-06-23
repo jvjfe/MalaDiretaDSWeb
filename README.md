@@ -13,7 +13,7 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 - Node.js
 - Express `^5.1.0`
 - Prisma ORM `^6.8.2`
-- MySQL / PostgreSQL (via `DATABASE_URL`)
+- MySQL
 - Multer (upload de imagens) `^2.0.1`
 - Dotenv `^16.5.0`
 - CORS `^2.8.5`
@@ -91,6 +91,9 @@ npm start
 ```
 
 ### Banco de Dados
+
+Antes de criar o ENV, a conta google associada deve ter a verificação de 2 fatores
+e uma senha de aplicativo veja mais em: [https://support.google.com/accounts/answer/185833?hl=pt-BR] (Fazer login com senhas de app)
 
 Crie um arquivo `.env` no diretório `backend` com sua conexão:
 
