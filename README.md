@@ -10,11 +10,11 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 
 ### Backend
 
-- Node.js
+- Node.js `22..16.0`
 - Express `^5.1.0`
 - Prisma ORM `^6.8.2`
 - MySQL
-- Multer (upload de imagens) `^2.0.1`
+- Multer`^2.0.1`
 - Dotenv `^16.5.0`
 - CORS `^2.8.5`
 - Nodemailer `^7.0.3`
@@ -93,7 +93,7 @@ npm start
 ### Banco de Dados
 
 Antes de criar o ENV, a conta google associada deve ter a verificação de 2 fatores
-e uma senha de aplicativo veja mais em:[Fazer login com senhas de app](https://support.google.com/accounts/answer/185833?hl=pt-BR)
+e uma senha de aplicativo veja mais em: [Fazer login com senhas de app](https://support.google.com/accounts/answer/185833?hl=pt-BR)
 
 Crie um arquivo `.env` no diretório `backend` com sua conexão:
 
@@ -118,8 +118,7 @@ http://localhost:3001/api-docs
 ## Problemas registrados
 
 - Bugs visuais e de responsividade
-- A imagem não aparece corretamnete no botão de Editar e Ver
-- O botão de Ver não responde as informações corretas
+- A imagem não aparece corretamnete no botão de Editar e Ver (Função de ver imagem REMOVIDA temporariamente)
 ---
 
 ## Autor
