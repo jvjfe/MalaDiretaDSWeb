@@ -6,6 +6,8 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 
 ---
 
+![UML do Projeto](./assets/Uml.png)
+
 ## Tecnologias Utilizadas
 
 ### Backend
