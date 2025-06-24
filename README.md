@@ -1,4 +1,4 @@
-# MalaDireta v0.1
+# MalaDireta v0.1.1
 
 Sistema completo de envio e gerenciamento de mensagens em massa para usuários cadastrados.
 
