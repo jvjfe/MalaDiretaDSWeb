@@ -25,7 +25,7 @@ const Login = ({ setIsAdmin }) => {  // recebe a prop setIsAdmin
                 localStorage.setItem('email', user.email);
                 localStorage.setItem('token', token);
 
-                setIsAdmin(true);  // atualiza o estado no App.js
+                setIsAdmin(true);
 
                 navigate('/home');
             } else {
