@@ -6,7 +6,9 @@ const MessageTable = ({ messages, onSend, onEdit, onDelete, loadingEmailId }) =>
     const [viewingMessage, setViewingMessage] = useState(null);
     const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
-    const handleConfirmDelete = () => {
+    const handleConfirmDelete = (e) => {
+        e?.preventDefault();
+        e?.stopPropagation();
         if (confirmDeleteId !== null) {
             onDelete(confirmDeleteId);
             setConfirmDeleteId(null);
@@ -47,7 +49,7 @@ const MessageTable = ({ messages, onSend, onEdit, onDelete, loadingEmailId }) =>
                                             {loadingEmailId === msg.id ? 'Enviando...' : 'Enviar'}
                                         </button>{' '}
                                         <button onClick={() => onEdit(msg.id)}>Editar</button>{' '}
-                                        <button onClick={() => setConfirmDeleteId(msg.id)}>Excluir</button>
+                                        <button type="button" onClick={() => setConfirmDeleteId(msg.id)}>Excluir</button>
                                     </>
                                 ) : (
                                     <button onClick={() => setViewingMessage(msg)}>Ver</button>
@@ -60,25 +62,20 @@ const MessageTable = ({ messages, onSend, onEdit, onDelete, loadingEmailId }) =>
 
             {viewingMessage && (
                 <div className="message-modal-overlay" onClick={() => setViewingMessage(null)}>
-                    <div
-                        className="message-modal-content"
-                        onClick={(e) => e.stopPropagation()}
-                    >
+                    <div className="message-modal-content" onClick={(e) => e.stopPropagation()}>
                         <ReactMarkdown>{viewingMessage.conteudo}</ReactMarkdown>
-
                         <button onClick={() => setViewingMessage(null)}>Fechar</button>
                     </div>
                 </div>
             )}
-
 
             {confirmDeleteId !== null && (
                 <div className="confirm-delete-modal-overlay" onClick={handleCancelDelete}>
                     <div className="confirm-delete-modal-content" onClick={(e) => e.stopPropagation()}>
                         <p>Tem certeza que deseja excluir o email ID {confirmDeleteId}?</p>
                         <div className="confirm-delete-buttons">
-                            <button onClick={handleConfirmDelete}>Sim, excluir</button>
-                            <button onClick={handleCancelDelete}>Cancelar</button>
+                            <button type="button" onClick={(e) => handleConfirmDelete(e)}>Sim, excluir</button>
+                            <button type="button" onClick={handleCancelDelete}>Cancelar</button>
                         </div>
                     </div>
                 </div>

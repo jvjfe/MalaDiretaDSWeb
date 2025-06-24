@@ -20,14 +20,12 @@ const MessageForm = ({ onSend }) => {
         setLoading(true);
 
         try {
-            // Envia para o componente pai (Home)
             await onSend({
                 title: titulo,
                 text: conteudo,
                 image: imagem
             });
 
-            // Limpa campos
             setTitulo('');
             setConteudo('');
             setImagem(null);

@@ -38,7 +38,6 @@ const EditModal = ({ message, onClose, onSave }) => {
             if (imagem) {
                 formData.append('imagem', imagem);
             }
-            // Se não tiver novo arquivo selecionado, não envia 'imagem' no formData
 
             const response = await axios.put(`/mensagens/${message.id}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }

@@ -44,7 +44,7 @@ const Home = () => {
 
     // Novo envio de e-mail com destinatários
     const sendMessage = async (id) => {
-        if (loadingEmailId) return; // já está enviando algo
+        if (loadingEmailId) return;
         const msg = messages.find(m => m.id === id);
         if (!msg) return;
 
@@ -79,16 +79,14 @@ const Home = () => {
 
     // Exclui mensagem (somente se não enviada)
     const deleteMessage = (id) => {
-        if (window.confirm('Tem certeza que deseja excluir esta mensagem?')) {
-            axios.delete(`/mensagens/${id}`)
-                .then(() => {
-                    setMessages(prev => prev.filter(m => m.id !== id));
-                })
-                .catch(err => {
-                    alert('Erro ao excluir mensagem. Talvez ela já tenha sido enviada.');
-                    console.error('Erro ao excluir:', err);
-                });
-        }
+        axios.delete(`/mensagens/${id}`)
+            .then(() => {
+                setMessages(prev => prev.filter(m => m.id !== id));
+            })
+            .catch(err => {
+                alert('Erro ao excluir mensagem. Talvez ela já tenha sido enviada.');
+                console.error('Erro ao excluir:', err);
+            });
     };
 
     // Salva edição
@@ -96,7 +94,7 @@ const Home = () => {
         axios.put(`/mensagens/${updatedMsg.id}`, {
             titulo: updatedMsg.title,
             conteudo: updatedMsg.text,
-            imagem: updatedMsg.image // texto (nome do arquivo), não reenvia arquivo aqui
+            imagem: updatedMsg.image
         }).then(res => {
             setMessages(prev =>
                 prev.map(m => m.id === updatedMsg.id ? res.data : m)
