@@ -2,6 +2,8 @@
 
 Sistema completo de envio e gerenciamento de mensagens em massa para usuários cadastrados.
 
+Confira as mudanças do projeto no arquivo [CHANGELOG](CHANGELOG.md)
+
 Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar mensagens com ou sem imagem, editar, deletar, enviar e manter um histórico detalhado de envios por usuário.
 
 ---
