@@ -32,7 +32,15 @@ app.use('/historico', require('./routes/historico'))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Inicialização do servidor
-const PORT = process.env.PORT || 3001
-app.listen(PORT, () =>
-    console.log(`✅ Servidor rodando em http://localhost:${PORT}/api-docs`)
-)
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+    console.clear(); // Limpa o terminal para facilitar a visualização
+    console.log('==========================================');
+    console.log('🚀 Servidor iniciado com sucesso!');
+    console.log('🔗 API rodando em:       http://localhost:' + PORT);
+    console.log('📚 Documentação Swagger: http://localhost:' + PORT + '/api-docs');
+    console.log('📦 Ambiente:             ' + (process.env.NODE_ENV || 'development'));
+    console.log('🕒 Iniciado em:          ' + new Date().toLocaleString());
+    console.log('==========================================\n');
+});
