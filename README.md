@@ -123,9 +123,7 @@ http://localhost:3001/api-docs
 - A imagem não aparece corretamnete no botão de Editar e Ver (Função de ver imagem REMOVIDA temporariamente)
 ---
 
-## Autor
+## 👥 Desenvolvido por
 
-João Vítor Justino Ferri  
-GitHub: [https://github.com/jvjfe](https://github.com/jvjfe)
-
+- [João Vítor Justino Ferri](https://github.com/jvjfe)
 ---
