@@ -13,7 +13,6 @@
     color: #fff;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 
-    /* Glow animation */
     animation: glow-white 3s ease-in-out infinite;
 }
 
@@ -63,9 +62,7 @@
 
 .modal-content {
     background: #1e1e1e;
-    /* fundo escuro */
     color: #ffffff;
-    /* texto branco */
     padding: 2rem;
     border-radius: 8px;
     max-height: 80vh;
@@ -80,7 +77,6 @@
     color: #ffffff;
 }
 
-/* Tabela de usuários em tema escuro */
 .usuarios-table {
     width: 100%;
     border-collapse: collapse;
@@ -141,7 +137,6 @@
     opacity: 0.6;
 }
 
-/* Botão fechar modal */
 .modal-content>button.btn {
     margin-top: 1rem;
     width: 100%;

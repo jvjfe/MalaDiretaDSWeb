@@ -5,14 +5,14 @@ import axios from 'axios';
 const EditModal = ({ message, onClose, onSave }) => {
     const [titulo, setTitulo] = useState('');
     const [conteudo, setConteudo] = useState('');
-    const [imagem, setImagem] = useState(null); // aqui será o arquivo, não string
+    const [imagem, setImagem] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
 
     useEffect(() => {
         if (message) {
             setTitulo(message.titulo || '');
             setConteudo(message.conteudo || '');
-            setImagem(null); // limpar arquivo selecionado, pq a imagem vem como string nome
+            setImagem(null);
             if (message.imagem) {
                 setPreviewUrl(`/uploads/${message.imagem}`);
             } else {
@@ -24,8 +24,8 @@ const EditModal = ({ message, onClose, onSave }) => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setImagem(file); // salva o arquivo no estado
-            setPreviewUrl(URL.createObjectURL(file)); // cria url temporária para preview
+            setImagem(file);
+            setPreviewUrl(URL.createObjectURL(file));
         }
     };
 

@@ -12,14 +12,12 @@ const Home = () => {
     const [editingMessage, setEditingMessage] = useState(null);
     const [loadingEmailId, setLoadingEmailId] = useState(null);
 
-    // Carrega mensagens do backend
     useEffect(() => {
         axios.get('/mensagens')
             .then(res => setMessages(res.data))
             .catch(err => console.error('Erro ao buscar mensagens:', err));
     }, []);
 
-    // Adiciona uma nova mensagem
     const addMessage = (msg) => {
         const formData = new FormData();
         formData.append('titulo', msg.title);
@@ -44,7 +42,6 @@ const Home = () => {
             });
     };
 
-    // Novo envio de e-mail com destinatários
     const sendMessage = async (id) => {
         if (loadingEmailId) return;
         const msg = messages.find(m => m.id === id);
@@ -76,11 +73,10 @@ const Home = () => {
             console.error('Erro ao enviar mensagem:', err);
             alert('Erro ao enviar e-mail.');
         } finally {
-            setLoadingEmailId(null); // termina carregamento
+            setLoadingEmailId(null);
         }
     };
 
-    // Exclui mensagem (somente se não enviada)
     const deleteMessage = (id) => {
         axios.delete(`/mensagens/${id}`)
             .then(() => {

@@ -3,7 +3,7 @@ import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setIsAdmin }) => {  // recebe a prop setIsAdmin
+const Login = ({ setIsAdmin }) => {
     const [loginData, setLoginData] = useState({ email: '', senha: '' });
     const [registerData, setRegisterData] = useState({ nome: '', email: '', senha: '', admin: false });
     const [showDenied, setShowDenied] = useState(false);
@@ -107,7 +107,6 @@ const Login = ({ setIsAdmin }) => {  // recebe a prop setIsAdmin
                             onChange={(e) => setRegisterData({ ...registerData, senha: e.target.value })}
                             required
                         />
-                        {/* admin sempre false no registro */}
                         <input type="hidden" value={registerData.admin} />
                         <button type="submit">Registrar</button>
                     </form>
