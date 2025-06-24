@@ -35,7 +35,7 @@ const Login = ({ setIsAdmin }) => {  // recebe a prop setIsAdmin
                 localStorage.removeItem('email');
                 localStorage.removeItem('token');
 
-                setIsAdmin(false); // garante que o estado fique atualizado
+                setIsAdmin(false);
             }
 
         } catch (error) {

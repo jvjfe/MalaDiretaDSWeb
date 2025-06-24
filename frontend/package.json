@@ -1,6 +1,6 @@
 {
   "name": "maladireta",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.10.0",
     "date-fns": "^4.1.0",
+    "marked": "^15.0.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",

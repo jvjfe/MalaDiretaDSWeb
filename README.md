@@ -36,6 +36,7 @@ Desenvolvido com Node.js, React, Prisma ORM e MySQL, esse sistema permite criar 
 - React Router DOM `^7.6.2`
 - Axios `^1.10.0`
 - React Markdown `^10.1.0`
+- Marked `^10.9.2`
 - React Modal
 - Componentização com `MessageForm`, `MessageTable`, `EditModal`, `Header`
 - Testing libraries:

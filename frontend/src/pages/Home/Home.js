@@ -4,6 +4,8 @@ import MessageForm from '../../components/MessageForm/MessageForm.js';
 import MessageTable from '../../components/MessageTable/MessageTable.js';
 import EditModal from '../../components/EditModal/EditModal.js';
 import Header from '../../components/Header/Header.js';
+import { marked } from 'marked';
+
 
 const Home = () => {
     const [messages, setMessages] = useState([]);
@@ -54,13 +56,14 @@ const Home = () => {
         const emails = destinatarios.split(',').map(e => e.trim()).filter(e => e);
 
         try {
-            setLoadingEmailId(id); // começa carregamento
+            setLoadingEmailId(id);
 
             await axios.post('/envio-email', {
                 emails,
                 subject: msg.titulo,
-                message: msg.conteudo,
+                message: marked(msg.conteudo),
             });
+
 
             await axios.patch(`/mensagens/${id}`, { enviado: true });
 
